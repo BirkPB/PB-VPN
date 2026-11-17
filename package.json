@@ -1,7 +1,7 @@
 {
   "name": "pb-vpn",
   "productName": "PB VPN",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PB VPN – en flot og hurtig WireGuard-klient til Windows",
   "main": "main.js",
   "author": "PB",
@@ -58,8 +58,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "DIT-GITHUB-BRUGERNAVN",
-        "repo": "pb-vpn"
+        "owner": "BirkPB",
+        "repo": "PB-VPN"
       }
     ]
   }
