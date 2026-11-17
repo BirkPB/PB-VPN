@@ -1,0 +1,66 @@
+{
+  "name": "pb-vpn",
+  "productName": "PB VPN",
+  "version": "1.0.0",
+  "description": "PB VPN – en flot og hurtig WireGuard-klient til Windows",
+  "main": "main.js",
+  "author": "PB",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/start.js",
+    "icon": "node build/start.js build/make-icon.js",
+    "dist": "electron-builder --win nsis --publish never",
+    "release": "electron-builder --win nsis --publish always"
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "dk.pbvpn.client",
+    "productName": "PB VPN",
+    "copyright": "Copyright © PB",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "build/icon.png"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "requestedExecutionLevel": "requireAdministrator",
+      "artifactName": "PB-VPN-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "PB VPN",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "DIT-GITHUB-BRUGERNAVN",
+        "repo": "pb-vpn"
+      }
+    ]
+  }
+}

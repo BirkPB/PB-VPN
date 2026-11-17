@@ -1,0 +1,24 @@
+name: Release
+
+# Skub et tag som v1.0.1 -> bygger installer og udgiver den på GitHub Releases.
+# Installerede klienter finder og henter automatisk opdateringen.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx electron-builder --win nsis --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
